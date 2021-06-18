@@ -76,8 +76,3 @@ class Sepres_Block(nn.Module):
         out = self.maxpool(out)
         return out
 
-model=SDM().cuda().eval()
-weight=torch.load("weight_100.pkl")
-model.load_state_dict(weight)
-dummy_input = torch.randn(1, 3, 64, 64, device='cuda')#(b,c,w,h)
-output = torch.onnx.export(model, dummy_input, "onx_model.onnx", verbose=True)
